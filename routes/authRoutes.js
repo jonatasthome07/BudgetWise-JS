@@ -3,6 +3,8 @@ const express = require("express")
 const Router = express.Router()
 const User = require("../models/User")
 
-Router.get("/", AuthController.showForm)
+Router.get("/register", AuthController.registerForm)
+Router.post("/register", AuthController.registerFormPost)
+
 
 module.exports = Router

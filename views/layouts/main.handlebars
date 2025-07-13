@@ -7,6 +7,13 @@
     <title>BudgetWise</title>
 </head>
 <body>
+    {{#if messages.msg}}
+        {{#each messages.msg}}
+            <div class="messages">
+                {{this}}
+            </div>
+        {{/each}}
+    {{/if}}
     {{{body}}}
 </body>
 </html>

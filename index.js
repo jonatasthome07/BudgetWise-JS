@@ -40,9 +40,14 @@ app.use((req,res,next)=>{
     next()
 })
 
+app.use(flash())
+app.use((req, res, next) => {
+  res.locals.messages = req.flash();
+  next();
+});
 app.use("/", authRoutes)
 
-app.use(flash())
+
 
 conn.sync()
 .then(()=>{
