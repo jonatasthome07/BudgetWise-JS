@@ -6,6 +6,8 @@ const FileStore = require("session-file-store")(session)
 const flash = require("express-flash")
 const app = express()
 const conn = require("./db/conn")
+const authRoutes = require("./routes/authRoutes")
+const AuthController = require("./controllers/AuthController")
 
 app.set("view engine", "handlebars")
 app.engine("handlebars", exphbs.engine())
@@ -37,6 +39,8 @@ app.use((req,res,next)=>{
     }
     next()
 })
+
+app.use("/", authRoutes)
 
 app.use(flash())
 
