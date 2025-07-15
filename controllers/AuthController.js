@@ -1,4 +1,5 @@
 const User = require("../models/User")
+const bcrypt = require("bcryptjs")
 
 module.exports = class AuthController{
     static registerForm (req,res){
@@ -20,6 +21,12 @@ module.exports = class AuthController{
                 res.redirect("/register")
                 return
             }
+
+            const salt = bcrypt.genSaltSync(10)
+            const hashedPass = bcrypt.hashSync(password, salt)
+            const user = {name, email, password:hashedPass, age}
+            await User.create(user)
+            res.redirect("/register")
 
         } 
         catch (error) {
