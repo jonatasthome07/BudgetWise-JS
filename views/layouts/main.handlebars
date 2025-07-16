@@ -8,11 +8,11 @@
 </head>
 <body>
     {{#if messages.msg}}
-        {{#each messages.msg}}
-            <div class="messages">
-                {{this}}
-            </div>
-        {{/each}}
+        <div class="messages">
+            {{#each messages.msg}}
+            {{this}}
+            {{/each}}
+        </div>
     {{/if}}
     {{{body}}}
 </body>

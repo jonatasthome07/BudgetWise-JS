@@ -12,13 +12,20 @@ module.exports = class AuthController{
             
             if (password != confirmpassword){
                 req.flash("msg", "As senhas devem ser iguais. Tente novamente!")
-                res.redirect("/register")
+                res.render("auth/register")
                 return 
             }
 
             if (age < 18){
                 req.flash("msg", "Acesso disponível apenas para maiores de idade.")
-                res.redirect("/register")
+                res.render("auth/register")
+                return
+            }
+
+            const checkUser = await User.findOne({where:{email:email}})
+            if(checkUser){
+                req.flash("msg", "Email já registrado. Tente novamente!")
+                res.render("auth/register")
                 return
             }
 
